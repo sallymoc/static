@@ -54,13 +54,10 @@ jobs:
         run: |
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
             echo "environment=production" >> $GITHUB_OUTPUT
-            echo "deploy_path=/sites/static.qubic.org/" >> $GITHUB_OUTPUT
           elif [[ "${{ github.ref }}" == "refs/heads/staging" ]]; then
             echo "environment=staging" >> $GITHUB_OUTPUT
-            echo "deploy_path=/sites/static.qubic.org/staging/" >> $GITHUB_OUTPUT
           elif [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
             echo "environment=dev" >> $GITHUB_OUTPUT
-            echo "deploy_path=/sites/static.qubic.org/dev/" >> $GITHUB_OUTPUT
           fi
 
       - name: Build distribution files
@@ -77,4 +74,4 @@ jobs:
           username: ${{ github.ref == 'refs/heads/main' && secrets.FTP_USERNAME_PROD || github.ref == 'refs/heads/staging' && secrets.FTP_USERNAME_STAGING || secrets.FTP_USERNAME_DEV }}
           password: ${{ github.ref == 'refs/heads/main' && secrets.FTP_PASSWORD_PROD || github.ref == 'refs/heads/staging' && secrets.FTP_PASSWORD_STAGING || secrets.FTP_PASSWORD_DEV }}
           local-dir: dist/
-          server-dir: ${{ steps.get_environment.outputs.deploy_path }}
+          server-dir: /
