@@ -76,5 +76,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ github.ref == 'refs/heads/main' && secrets.FTP_USERNAME_PROD || github.ref == 'refs/heads/staging' && secrets.FTP_USERNAME_STAGING || secrets.FTP_USERNAME_DEV }}
           password: ${{ github.ref == 'refs/heads/main' && secrets.FTP_PASSWORD_PROD || github.ref == 'refs/heads/staging' && secrets.FTP_PASSWORD_STAGING || secrets.FTP_PASSWORD_DEV }}
-          local-dir: ./dist/
+          local-dir: dist/
           server-dir: ${{ steps.get_environment.outputs.deploy_path }}
