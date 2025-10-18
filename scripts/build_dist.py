@@ -201,21 +201,16 @@ Examples:
 
     # Build each product
     for product_name, src_dir in products_to_build.items():
-        # Determine environment path: production (root), staging/, or dev/
-        # Structure: {env}/v1/{product}/ or v1/{product}/ for production
-        if args.environment == "production":
-            # Production: dist/v1/{product}/
-            env_path = Path(API_VERSION_SUBDIR)
-        else:
-            # Staging/Dev: dist/{env}/v1/{product}/
-            env_path = Path(args.environment) / API_VERSION_SUBDIR
+        # All environments use the same structure: dist/v1/{product}/
+        # FTP users are already scoped to their environment directories
+        env_path = Path(API_VERSION_SUBDIR)
 
         # Determine output directory
         if product_name == "general":
-            # General goes to dist/{env}/v1/general/data/
+            # General goes to dist/v1/general/data/
             product_dist_dir = dist_root / env_path / "general" / "data"
         else:
-            # Products go to dist/{env}/v1/{product-name}/
+            # Products go to dist/v1/{product-name}/
             product_dist_dir = dist_root / env_path / product_name
 
         product_dist_dir.mkdir(parents=True, exist_ok=True)
