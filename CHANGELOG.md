@@ -1,3 +1,10 @@
+# [1.0.0-rc.2](https://github.com/sallymoc/static/compare/v1.0.0-rc.1...v1.0.0-rc.2) (2025-10-18)
+
+
+### Bug Fixes
+
+* reorder semantic-release plugins to ensure GitHub release creation ([4afa414](https://github.com/sallymoc/static/commit/4afa41458a5caf4ad70939d07b92082a357a68dc))
+
 # 1.0.0-rc.1 (2025-10-18)
 
 
