@@ -2,6 +2,28 @@
 
 This repository provides static data and assets related to Qubic blockchain. It serves as a single, reliable source of structured data for developers, explorers, wallets, dashboards, and analysis tools.
 
+## Quick Start
+
+### Build Commands
+
+```bash
+# Build everything (recommended)
+python3 scripts/build_dist.py --product all --version v1.2.3
+
+# Build specific product
+python3 scripts/build_dist.py --product general --version v1.2.3
+python3 scripts/build_dist.py --product wallet-app --version v1.2.3
+
+# Build for staging
+python3 scripts/build_dist.py --product all --version v1.2.3-rc.1 --environment staging
+```
+
+### Update Smart Contracts
+
+```bash
+python3 scripts/update_smart_contracts.py
+```
+
 ## Data Categories
 
 ### General Data (Shared)
@@ -17,9 +39,10 @@ Available at: **https://static.qubic.org/v1/general/data/**
 **Wallet App**
 Available at: **https://static.qubic.org/v1/wallet-app/**
 
-- DApp explorer data with multilingual support
+- **DApp Explorer** - Curated list of DApps with multilingual support (7 languages: EN, DE, ES, FR, RU, TR, ZH)
 - Mobile wallet configuration files
-- Localization files (EN, DE, ES, FR, RU, TR, ZH)
+
+_Note: Currently, wallet-app is the only product-specific data. Additional products may be added in the future as the ecosystem grows._
 
 ## Available Files
 
@@ -52,17 +75,63 @@ Base URL: `https://static.qubic.org/v1/general/data/`
 ### Wallet App Files
 Base URL: `https://static.qubic.org/v1/wallet-app/`
 
-- **DApps**
-  - [dapps/dapps.json](https://static.qubic.org/v1/wallet-app/dapps/dapps.json)
-  - Locales: `dapps/locales/{lang}.json` (en, de, es, fr, ru, tr, zh)  
+- **DApp Explorer**
+  - [dapps/dapps.json](https://static.qubic.org/v1/wallet-app/dapps/dapps.json) - Curated DApp catalog
+  - Locales: `dapps/locales/{lang}.json` (en, de, es, fr, ru, tr, zh)
+  - **Want to add your DApp?** See [How to Contribute](#how-to-contribute) section below
 
-## Environments
+## Environments & URL Structure
 
 This repository supports three deployment environments:
 
-- **Production**: `https://static.qubic.org/` - Stable releases (e.g., v1.2.3)
-- **Staging**: `https://static.qubic.org/staging/` - Release candidates (e.g., v1.2.3-rc.1)
-- **Dev**: `https://static.qubic.org/dev/` - Development testing
+- **Production**: `https://static.qubic.org/v1/` - Stable releases (e.g., v1.2.3)
+- **Staging**: `https://static.qubic.org/staging/v1/` - Release candidates (e.g., v1.2.3-rc.1)
+- **Dev**: `https://static.qubic.org/dev/v1/` - Development testing
+
+### URL Format
+
+```
+Production: https://static.qubic.org/v1/{product}/{path-to-file}
+Staging:    https://static.qubic.org/staging/v1/{product}/{path-to-file}
+Dev:        https://static.qubic.org/dev/v1/{product}/{path-to-file}
+```
+
+### Examples
+
+**General Data:**
+```
+https://static.qubic.org/v1/general/data/smart_contracts.json
+https://static.qubic.org/staging/v1/general/data/smart_contracts.json
+```
+
+**Wallet App:**
+```
+https://static.qubic.org/v1/wallet-app/dapps/dapps.json
+https://static.qubic.org/v1/wallet-app/dapps/locales/en.json
+```
+
+### Version Tracking & Cache Invalidation
+
+Each product includes a `version.json` file for efficient cache management:
+
+```javascript
+// Fetch version metadata
+const versionData = await fetch('https://static.qubic.org/v1/wallet-app/version.json')
+  .then(r => r.json());
+
+// Compare file hashes with cached versions
+for (const [filename, metadata] of Object.entries(versionData.files)) {
+  if (cachedHashes[filename] !== metadata.hash) {
+    // Hash changed → download new file
+    await downloadFile(filename);
+  }
+}
+```
+
+The `version.json` contains SHA-256 hashes and file sizes for all files, enabling apps to:
+- Only download changed files
+- Properly invalidate caches
+- Verify file integrity
 
 ## Repository Structure
 
@@ -115,25 +184,53 @@ docs: update README with new structure
 2. **Staging** - Push to `staging` branch → creates RC tag & GitHub pre-release → deploys to staging
 3. **Production** - Push to `main` branch → creates version tag & GitHub release → deploys to production
 
-### Building Locally
+### Release Workflow
 
-Build distribution files for all products:
-```bash
-python3 scripts/build_dist.py --product all --version v1.2.3
-```
+1. **Development** - Make changes in feature branches using conventional commit messages
+2. **Dev Testing** - Merge to `dev` branch → auto-deploys to dev environment
+3. **Staging** - Merge to `staging` branch → semantic-release creates RC tag & deploys
+4. **Testing** - Test on staging environment
+5. **Production** - Merge `staging` to `main` → creates release & deploys to production
 
-Update smart contracts from Qubic core repository:
-```bash
-python3 scripts/update_smart_contracts.py
-```
+Semantic-release automatically:
+- Analyzes commit messages
+- Determines version numbers
+- Creates GitHub releases
+- Generates changelogs
+- Triggers deployments
 
 ## How to Contribute
 
-Contributions are welcome:
+Contributions are welcome! Here's how you can help:
 
-- **General data** (exchanges, tokens, address labels) - Submit Pull Requests with new entries
-- **Product-specific data** - Submit PRs to `products/{product-name}/` with updates
-- **Smart contracts** - Data is auto-generated. Open Issues for corrections rather than PRs
-- **New products** - Create folder under `products/` and submit PR
+### Adding Data
 
-See [products/README.md](products/README.md) for detailed structure guidelines.  
+**DApps for Wallet Explorer** 🎯
+- Add your DApp to the curated explorer list in `products/wallet-app/dapps/dapps.json`
+- Include title and description translations in all 7 languages: `products/wallet-app/dapps/locales/*.json` (en, de, es, fr, ru, tr, zh)
+- Provide app URL, icon, and category information
+
+**Exchange Addresses**
+- Add new exchange addresses to `data/exchanges.json`
+- Include exchange name and Qubic address
+
+**Token Information**
+- Add complementary token data to `data/tokens.json`
+- Reference tokens by name (not all tokens need to be listed, only those with additional metadata)
+
+**Address Labels**
+- Add relevant Qubic addresses to `data/address_labels.json`
+- Include descriptive labels for known addresses
+
+**Smart Contract Custom Data**
+- Add custom fields or metadata to existing smart contracts in `data/smart_contracts.json`
+- Note: Core fields (name, contractIndex, address, procedures) are auto-generated. Open an Issue for corrections to these fields rather than submitting PRs
+
+### Submitting Changes
+
+1. Fork the repository
+2. Create a feature branch with conventional commit format (e.g., `feat: add new exchange address`)
+3. Submit a Pull Request to the `dev` branch
+4. Changes will be tested in dev → staging → production environments
+
+For detailed structure guidelines, see [products/README.md](products/README.md).

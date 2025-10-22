@@ -44,8 +44,9 @@ python3 scripts/build_dist.py --product all --version v1.2.3
 ```
 
 Each product is deployed to:
-- Production: `static.qubic.org/{product-name}/v1/`
-- Staging: `static.qubic.org/{product-name}/staging/v1/`
+- Production: `static.qubic.org/v1/{product-name}/`
+- Staging: `static.qubic.org/staging/v1/{product-name}/`
+- Dev: `static.qubic.org/dev/v1/{product-name}/`
 
 ## Guidelines
 
@@ -61,12 +62,12 @@ Each product is deployed to:
 
 ## Version Tracking
 
-Each product gets its own `version.json` with:
+The repository uses a single API version (v1) that applies to all products. Each product gets its own `version.json` file with:
 - Same version number across all products (monorepo versioning)
 - Individual file hashes for cache invalidation
 - File sizes for all resources
 
-Example: `dist/wallet-app/v1/version.json`
+Example: `https://static.qubic.org/v1/wallet-app/version.json`
 ```json
 {
   "version": "v1.2.3",
@@ -84,3 +85,5 @@ Example: `dist/wallet-app/v1/version.json`
   }
 }
 ```
+
+**Important:** The `v1` in the URL path represents the API version, not the product version. All products share the same API version and deploy under the same v1 namespace.
