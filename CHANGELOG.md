@@ -1,3 +1,33 @@
+## [1.1.1](https://github.com/qubic/static/compare/v1.1.0...v1.1.1) (2025-10-23)
+
+
+### Bug Fixes
+
+* add version at the bottom of index file ([3aa8f7c](https://github.com/qubic/static/commit/3aa8f7c4a9c988f101d71e8c03e9db4e0e980b59))
+* add version at the bottom of index file ([80ae4d9](https://github.com/qubic/static/commit/80ae4d94aebaccfd18d27ac52f2a2b34e25b852c))
+* table of contents added ([be7335a](https://github.com/qubic/static/commit/be7335a715597343d01bdbcfb85e4e0cbc213391))
+
+## [1.1.1-rc.3](https://github.com/qubic/static/compare/v1.1.1-rc.2...v1.1.1-rc.3) (2025-10-23)
+
+
+### Bug Fixes
+
+* add version at the bottom of index file ([3aa8f7c](https://github.com/qubic/static/commit/3aa8f7c4a9c988f101d71e8c03e9db4e0e980b59))
+
+## [1.1.1-rc.2](https://github.com/qubic/static/compare/v1.1.1-rc.1...v1.1.1-rc.2) (2025-10-23)
+
+
+### Bug Fixes
+
+* add version at the bottom of index file ([80ae4d9](https://github.com/qubic/static/commit/80ae4d94aebaccfd18d27ac52f2a2b34e25b852c))
+
+## [1.1.1-rc.1](https://github.com/qubic/static/compare/v1.1.0...v1.1.1-rc.1) (2025-10-23)
+
+
+### Bug Fixes
+
+* table of contents added ([be7335a](https://github.com/qubic/static/commit/be7335a715597343d01bdbcfb85e4e0cbc213391))
+
 # [1.1.0](https://github.com/qubic/static/compare/v1.0.0...v1.1.0) (2025-10-23)
 
 
