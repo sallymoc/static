@@ -1,3 +1,10 @@
+## [1.1.1-rc.3](https://github.com/qubic/static/compare/v1.1.1-rc.2...v1.1.1-rc.3) (2025-10-23)
+
+
+### Bug Fixes
+
+* add version at the bottom of index file ([3aa8f7c](https://github.com/qubic/static/commit/3aa8f7c4a9c988f101d71e8c03e9db4e0e980b59))
+
 ## [1.1.1-rc.2](https://github.com/qubic/static/compare/v1.1.1-rc.1...v1.1.1-rc.2) (2025-10-23)
 
 
