@@ -1,3 +1,10 @@
+# [1.1.0-rc.1](https://github.com/qubic/static/compare/v1.0.0...v1.1.0-rc.1) (2025-10-23)
+
+
+### Features
+
+* add index.html landing page ([492899c](https://github.com/qubic/static/commit/492899cc0b93dc6cc009c5f9295006bffb927034))
+
 # 1.0.0 (2025-10-18)
 
 
