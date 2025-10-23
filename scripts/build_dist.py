@@ -218,6 +218,13 @@ Examples:
         # Build the product
         build_product(product_name, src_dir, product_dist_dir, args.version, args.environment)
 
+    # Copy index.html to dist root (for landing page)
+    index_html = base_dir / "index.html"
+    if index_html.exists():
+        dist_index = dist_root / "index.html"
+        shutil.copy2(index_html, dist_index)
+        print(f"\nCopied index.html to {dist_index}")
+
     print(f"\n{'='*60}")
     print("Build completed successfully!")
     print(f"{'='*60}\n")

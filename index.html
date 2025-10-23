@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qubic Static</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: #101820;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #151E27;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            padding: 3rem;
+            border: 1px solid #202E3C;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 3px solid #019AB8;
+            padding-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #61F0FE;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #B0F9FE;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #61F0FE;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #202E3C;
+        }
+
+        .base-url {
+            background: #202E3C;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            color: #61F0FE;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            border: 1px solid #40C4DE;
+        }
+
+        .endpoint-group {
+            margin-bottom: 2rem;
+        }
+
+        .endpoint-group h3 {
+            font-size: 1.2rem;
+            color: #B0F9FE;
+            margin-bottom: 0.8rem;
+        }
+
+        .endpoints {
+            list-style: none;
+        }
+
+        .endpoints li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .endpoints a {
+            display: inline-block;
+            padding: 0.6rem 1rem;
+            background: #202E3C;
+            color: #61F0FE;
+            text-decoration: none;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid #40C4DE;
+        }
+
+        .endpoints a:hover {
+            background: #019AB8;
+            color: #CCFCFF;
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(1, 154, 184, 0.5);
+        }
+
+        .copy-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            background: transparent;
+            color: #B0F9FE;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .copy-btn:hover:not(.copied) {
+            color: #ffffff;
+        }
+
+        .copy-btn.copied {
+            cursor: default;
+        }
+
+        .copy-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .copy-btn.copied svg {
+            color: #47CD89;
+        }
+
+        /* Tooltip */
+        .copy-btn::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 8px;
+            padding: 6px 12px;
+            background: #202E3C;
+            color: #ffffff;
+            font-size: 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            z-index: 1000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .copy-btn:hover::after {
+            opacity: 1;
+        }
+
+        .description {
+            color: #9CA3AF;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .env-selector {
+            background: #202E3C;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 6px;
+            border: 2px solid #019AB8;
+        }
+
+        .env-selector label {
+            font-weight: bold;
+            color: #61F0FE;
+            margin-right: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .env-selector select {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border: 2px solid #40C4DE;
+            border-radius: 6px;
+            background: #151E27;
+            color: #61F0FE;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .env-selector select:hover {
+            background: #019AB8;
+            color: #CCFCFF;
+            border-color: #61F0FE;
+        }
+
+        .env-selector select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(1, 154, 184, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #202E3C;
+            color: #B0F9FE;
+        }
+
+        footer a {
+            color: #61F0FE;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #CCFCFF;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Qubic Static</h1>
+        </header>
+        <p class="description">This repository provides static data and assets related to Qubic blockchain. It serves as
+            a
+            single, reliable source of structured data for developers, explorers, wallets, dashboards, and analysis
+            tools.</p>
+
+        <div class="env-selector">
+
+            <label for="env-select">Environment:</label>
+            <select id="env-select">
+                <option value="https://static.qubic.org/v1/">Production (https://static.qubic.org/v1/)</option>
+                <option value="https://static.qubic.org/staging/v1/">Staging (https://static.qubic.org/staging/v1/)
+                </option>
+                <option value="https://static.qubic.org/dev/v1/">Dev (https://static.qubic.org/dev/v1/)</option>
+            </select>
+        </div>
+
+        <section class="section">
+            <h2>General Data (Shared)</h2>
+
+            <p class="description">Shared data resources available for all applications including smart contracts,
+                exchanges, tokens, and address labels.</p>
+            <div class="base-url">https://static.qubic.org/v1/general/data/</div>
+
+            <div class="endpoint-group">
+                <h3>Smart Contracts</h3>
+                <p class="description">Comprehensive list of Qubic smart contracts including names, indexes, procedures,
+                    GitHub source links, and addresses.</p>
+                <ul class="endpoints">
+                    <li><a href="v1/general/data/smart_contracts.json" target="_blank">smart_contracts.json</a></li>
+                    <li><a href="v1/general/data/smart_contracts.min.json" target="_blank">smart_contracts.min.json</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="endpoint-group">
+                <h3>Exchanges</h3>
+                <p class="description">Known trading platforms and their associated Qubic addresses for exchange
+                    identification.</p>
+                <ul class="endpoints">
+                    <li><a href="v1/general/data/exchanges.json" target="_blank">exchanges.json</a></li>
+                    <li><a href="v1/general/data/exchanges.min.json" target="_blank">exchanges.min.json</a></li>
+                </ul>
+            </div>
+
+            <div class="endpoint-group">
+                <h3>Tokens</h3>
+                <p class="description">Additional metadata and information about tokens in the Qubic ecosystem. Note:
+                    This is not intended to be a complete list of all tokens. For the full list of token issuances, use
+                    <a href="https://rpc.qubic.org/v1/assets/issuances" target="_blank"
+                        style="color: #CCFCFF; text-decoration: underline;">https://rpc.qubic.org/v1/assets/issuances</a>.
+                </p>
+                <ul class="endpoints">
+                    <li><a href="v1/general/data/tokens.json" target="_blank">tokens.json</a></li>
+                    <li><a href="v1/general/data/tokens.min.json" target="_blank">tokens.min.json</a></li>
+                </ul>
+            </div>
+
+            <div class="endpoint-group">
+                <h3>Address Labels</h3>
+                <p class="description">Human-readable labels for known and important Qubic addresses.</p>
+                <ul class="endpoints">
+                    <li><a href="v1/general/data/address_labels.json" target="_blank">address_labels.json</a></li>
+                    <li><a href="v1/general/data/address_labels.min.json" target="_blank">address_labels.min.json</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="endpoint-group">
+                <h3>Bundle</h3>
+                <p class="description">All general data files combined into a single file for convenience.</p>
+                <ul class="endpoints">
+                    <li><a href="v1/general/data/bundle.json" target="_blank">bundle.json</a></li>
+                    <li><a href="v1/general/data/bundle.min.json" target="_blank">bundle.min.json</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Wallet App Data</h2>
+
+            <p class="description">Product-specific data for the Qubic wallet application.</p>
+            <div class="base-url">v1/wallet-app/</div>
+
+            <div class="endpoint-group">
+                <h3>DApp Explorer</h3>
+                <ul class="endpoints">
+                    <li><a href="v1/wallet-app/dapps/dapps.json" target="_blank">dapps/dapps.json</a></li>
+                </ul>
+            </div>
+
+            <div class="endpoint-group">
+                <h3>DApp Locales</h3>
+                <ul class="endpoints">
+                    <li><a href="v1/wallet-app/dapps/locales/en.json" target="_blank">locales/en.json (English)</a></li>
+                    <li><a href="v1/wallet-app/dapps/locales/de.json" target="_blank">locales/de.json (German)</a></li>
+                    <li><a href="v1/wallet-app/dapps/locales/es.json" target="_blank">locales/es.json (Spanish)</a></li>
+                    <li><a href="v1/wallet-app/dapps/locales/fr.json" target="_blank">locales/fr.json (French)</a></li>
+                    <li><a href="v1/wallet-app/dapps/locales/ru.json" target="_blank">locales/ru.json (Russian)</a></li>
+                    <li><a href="v1/wallet-app/dapps/locales/tr.json" target="_blank">locales/tr.json (Turkish)</a></li>
+                    <li><a href="v1/wallet-app/dapps/locales/zh.json" target="_blank">locales/zh.json (Chinese)</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <p>For more information, visit the <a href="https://github.com/qubic/static" target="_blank">GitHub
+                    Repository</a></p>
+            <p>Want to contribute? Check out our <a href="https://github.com/qubic/static#how-to-contribute"
+                    target="_blank">Contribution Guide</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // SVG Icons (from explorer-frontend)
+        const copyIcon = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 11H9C8.44687 11 8 10.5531 8 10V2C8 1.44687 8.44687 1 9 1H12.3781C12.5094 1 12.6375 1.05313 12.7312 1.14688L14.8531 3.26875C14.9469 3.3625 15 3.49063 15 3.62188V10C15 10.5531 14.5531 11 14 11ZM15.5594 2.55938L13.4406 0.440625C13.1594 0.159375 12.7781 0 12.3813 0H9C7.89687 0 7 0.896875 7 2V10C7 11.1031 7.89687 12 9 12H14C15.1031 12 16 11.1031 16 10V3.62188C16 3.225 15.8406 2.84375 15.5594 2.5625V2.55938ZM2 4C0.896875 4 0 4.89687 0 6V14C0 15.1031 0.896875 16 2 16H7C8.10312 16 9 15.1031 9 14V13H8V14C8 14.5531 7.55312 15 7 15H2C1.44687 15 1 14.5531 1 14V6C1 5.44688 1.44687 5 2 5H6V4H2Z" fill="currentColor"/></svg>';
+        const checkIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>';
+
+        // Copy to clipboard function (with fallback from explorer-frontend)
+        function copyText(textToCopy) {
+            if (navigator.clipboard && window.isSecureContext) {
+                // Use the modern clipboard API if available and secure
+                return navigator.clipboard.writeText(textToCopy);
+            } else {
+                // Fallback for older browsers or non-secure contexts
+                const input = document.createElement('input');
+                input.value = textToCopy;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                document.body.removeChild(input);
+                return Promise.resolve();
+            }
+        }
+
+        // Copy to clipboard with visual feedback
+        function copyToClipboard(text, button) {
+            copyText(text).then(() => {
+                // Visual feedback
+                button.innerHTML = checkIcon;
+                button.classList.add('copied');
+                button.setAttribute('data-tooltip', 'Copied');
+
+                setTimeout(() => {
+                    button.innerHTML = copyIcon;
+                    button.classList.remove('copied');
+                    button.setAttribute('data-tooltip', 'Copy to clipboard');
+                }, 1000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
+
+        // Update all links based on selected environment
+        function updateLinks() {
+            const baseUrl = document.getElementById('env-select').value;
+
+            // Update base URL displays
+            document.querySelectorAll('.base-url').forEach(el => {
+                // Extract just the path after v1/
+                const path = el.textContent.replace(/https:\/\/static\.qubic\.org\/(staging\/|dev\/)?v1\//, '').replace(/^v1\//, '');
+                el.textContent = baseUrl + path;
+            });
+
+            // Update all endpoint links
+            document.querySelectorAll('.endpoints a').forEach(link => {
+                // Extract just the path after v1/
+                const path = link.getAttribute('href').replace(/https:\/\/static\.qubic\.org\/(staging\/|dev\/)?v1\//, '').replace(/^v1\//, '');
+                link.setAttribute('href', baseUrl + path);
+            });
+        }
+
+        // Add copy buttons to all endpoint links
+        function addCopyButtons() {
+            document.querySelectorAll('.endpoints li').forEach(li => {
+                const link = li.querySelector('a');
+                if (link && !li.querySelector('.copy-btn')) {
+                    const copyBtn = document.createElement('button');
+                    copyBtn.type = 'button';
+                    copyBtn.className = 'copy-btn';
+                    copyBtn.innerHTML = copyIcon;
+                    copyBtn.setAttribute('data-tooltip', 'Copy to clipboard');
+                    copyBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const fullUrl = link.href;
+                        copyToClipboard(fullUrl, copyBtn);
+                    });
+                    li.appendChild(copyBtn);
+                }
+            });
+        }
+
+        // Listen for environment changes
+        document.getElementById('env-select').addEventListener('change', updateLinks);
+
+        // Initialize on page load
+        updateLinks();
+        addCopyButtons();
+    </script>
+</body>
+
+</html>
