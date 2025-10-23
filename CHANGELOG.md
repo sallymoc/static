@@ -1,3 +1,10 @@
+## [1.1.1-rc.1](https://github.com/qubic/static/compare/v1.1.0...v1.1.1-rc.1) (2025-10-23)
+
+
+### Bug Fixes
+
+* table of contents added ([be7335a](https://github.com/qubic/static/commit/be7335a715597343d01bdbcfb85e4e0cbc213391))
+
 # [1.1.0](https://github.com/qubic/static/compare/v1.0.0...v1.1.0) (2025-10-23)
 
 
