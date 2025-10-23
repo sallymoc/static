@@ -12,6 +12,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
@@ -33,9 +37,9 @@
 
         header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
             border-bottom: 3px solid #019AB8;
-            padding-bottom: 2rem;
+            padding-bottom: 1rem;
         }
 
         h1 {
@@ -176,18 +180,16 @@
         }
 
         .env-selector {
-            background: #202E3C;
-            padding: 1.5rem;
             margin: 2rem 0;
-            border-radius: 6px;
-            border: 2px solid #019AB8;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .env-selector label {
             font-weight: bold;
             color: #61F0FE;
-            margin-right: 1rem;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .env-selector select {
@@ -198,7 +200,6 @@
             background: #151E27;
             color: #61F0FE;
             cursor: pointer;
-            font-weight: bold;
             transition: all 0.3s ease;
         }
 
@@ -211,6 +212,59 @@
         .env-selector select:focus {
             outline: none;
             box-shadow: 0 0 0 3px rgba(1, 154, 184, 0.3);
+        }
+
+        .table-of-contents {
+            background: #202E3C;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 6px;
+            border: 1px solid #40C4DE;
+        }
+
+        .table-of-contents h3 {
+            color: #61F0FE;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list > li {
+            margin-bottom: 0.3rem;
+        }
+
+        .toc-list a {
+            color: #B0F9FE;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: block;
+            padding: 0.1rem 0;
+        }
+
+        .toc-list a:hover {
+            color: #61F0FE;
+        }
+
+        .toc-list ul {
+            list-style: none;
+            margin-left: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .toc-list ul li {
+            margin-bottom: 0.1rem;
+        }
+
+        .toc-list ul a {
+            color: #9CA3AF;
+            font-size: 0.9rem;
+        }
+
+        .toc-list ul a:hover {
+            color: #B0F9FE;
         }
 
         footer {
@@ -244,8 +298,7 @@
             tools.</p>
 
         <div class="env-selector">
-
-            <label for="env-select">Environment:</label>
+            <label for="env-select">Environment</label>
             <select id="env-select">
                 <option value="https://static.qubic.org/v1/">Production (https://static.qubic.org/v1/)</option>
                 <option value="https://static.qubic.org/staging/v1/">Staging (https://static.qubic.org/staging/v1/)
@@ -254,14 +307,37 @@
             </select>
         </div>
 
-        <section class="section">
+        <nav class="table-of-contents">
+            <h3>Table of Contents</h3>
+            <ul class="toc-list">
+                <li>
+                    <a href="#general-data">General Data (Shared)</a>
+                    <ul>
+                        <li><a href="#smart-contracts">Smart Contracts</a></li>
+                        <li><a href="#exchanges">Exchanges</a></li>
+                        <li><a href="#tokens">Tokens</a></li>
+                        <li><a href="#address-labels">Address Labels</a></li>
+                        <li><a href="#bundle">Bundle</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#wallet-app">Wallet App Data</a>
+                    <ul>
+                        <li><a href="#dapp-explorer">DApp Explorer</a></li>
+                        <li><a href="#dapp-locales">DApp Locales</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <section class="section" id="general-data">
             <h2>General Data (Shared)</h2>
 
             <p class="description">Shared data resources available for all applications including smart contracts,
                 exchanges, tokens, and address labels.</p>
             <div class="base-url">https://static.qubic.org/v1/general/data/</div>
 
-            <div class="endpoint-group">
+            <div class="endpoint-group" id="smart-contracts">
                 <h3>Smart Contracts</h3>
                 <p class="description">Comprehensive list of Qubic smart contracts including names, indexes, procedures,
                     GitHub source links, and addresses.</p>
@@ -272,7 +348,7 @@
                 </ul>
             </div>
 
-            <div class="endpoint-group">
+            <div class="endpoint-group" id="exchanges">
                 <h3>Exchanges</h3>
                 <p class="description">Known trading platforms and their associated Qubic addresses for exchange
                     identification.</p>
@@ -282,7 +358,7 @@
                 </ul>
             </div>
 
-            <div class="endpoint-group">
+            <div class="endpoint-group" id="tokens">
                 <h3>Tokens</h3>
                 <p class="description">Additional metadata and information about tokens in the Qubic ecosystem. Note:
                     This is not intended to be a complete list of all tokens. For the full list of token issuances, use
@@ -295,7 +371,7 @@
                 </ul>
             </div>
 
-            <div class="endpoint-group">
+            <div class="endpoint-group" id="address-labels">
                 <h3>Address Labels</h3>
                 <p class="description">Human-readable labels for known and important Qubic addresses.</p>
                 <ul class="endpoints">
@@ -305,7 +381,7 @@
                 </ul>
             </div>
 
-            <div class="endpoint-group">
+            <div class="endpoint-group" id="bundle">
                 <h3>Bundle</h3>
                 <p class="description">All general data files combined into a single file for convenience.</p>
                 <ul class="endpoints">
@@ -315,20 +391,20 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="wallet-app">
             <h2>Wallet App Data</h2>
 
             <p class="description">Product-specific data for the Qubic wallet application.</p>
             <div class="base-url">v1/wallet-app/</div>
 
-            <div class="endpoint-group">
+            <div class="endpoint-group" id="dapp-explorer">
                 <h3>DApp Explorer</h3>
                 <ul class="endpoints">
                     <li><a href="v1/wallet-app/dapps/dapps.json" target="_blank">dapps/dapps.json</a></li>
                 </ul>
             </div>
 
-            <div class="endpoint-group">
+            <div class="endpoint-group" id="dapp-locales">
                 <h3>DApp Locales</h3>
                 <ul class="endpoints">
                     <li><a href="v1/wallet-app/dapps/locales/en.json" target="_blank">locales/en.json (English)</a></li>
@@ -347,6 +423,7 @@
                     Repository</a></p>
             <p>Want to contribute? Check out our <a href="https://github.com/qubic/static#how-to-contribute"
                     target="_blank">Contribution Guide</a></p>
+            <p style="margin-top: 1rem; color: #9CA3AF; font-size: 0.9rem;" id="version-info">Version Loading...</p>
         </footer>
     </div>
 
@@ -432,9 +509,27 @@
         // Listen for environment changes
         document.getElementById('env-select').addEventListener('change', updateLinks);
 
+        // Fetch and display version from the current environment (not the selected one)
+        async function fetchVersion() {
+            try {
+                // Use relative path to get version from current environment
+                const response = await fetch('v1/general/data/version.json');
+                const data = await response.json();
+                const versionInfo = document.getElementById('version-info');
+                if (data.version) {
+                    versionInfo.textContent = `Version ${data.version}`;
+                }
+            } catch (error) {
+                console.error('Failed to fetch version:', error);
+                const versionInfo = document.getElementById('version-info');
+                versionInfo.textContent = '';
+            }
+        }
+
         // Initialize on page load
         updateLinks();
         addCopyButtons();
+        fetchVersion();
     </script>
 </body>
 
