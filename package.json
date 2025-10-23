@@ -7,10 +7,6 @@
   "scripts": {
     "release": "semantic-release"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sallymoc/static.git"
-  },
   "keywords": [
     "qubic",
     "blockchain",

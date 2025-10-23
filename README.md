@@ -1,4 +1,4 @@
-# Qubic Static API
+# Qubic Static
 
 This repository provides static data and assets related to Qubic blockchain. It serves as a single, reliable source of structured data for developers, explorers, wallets, dashboards, and analysis tools.
 
