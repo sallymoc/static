@@ -209,6 +209,4 @@ Contributions are welcome! Here's how you can help:
 1. Fork the repository
 2. Create a feature branch with conventional commit format (e.g., `feat: add new exchange address`)
 3. Submit a Pull Request to the `dev` branch
-4. Changes will be tested in dev → staging → production environments
-
-For detailed structure guidelines, see [products/README.md](products/README.md).
+4. Changes will be tested in dev → staging → production environments by the Fronted Apps Team
