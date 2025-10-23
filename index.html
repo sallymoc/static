@@ -423,6 +423,7 @@
                     Repository</a></p>
             <p>Want to contribute? Check out our <a href="https://github.com/qubic/static#how-to-contribute"
                     target="_blank">Contribution Guide</a></p>
+            <p style="margin-top: 1rem; color: #9CA3AF; font-size: 0.9rem;" id="version-info">Version: Loading...</p>
         </footer>
     </div>
 
@@ -508,9 +509,30 @@
         // Listen for environment changes
         document.getElementById('env-select').addEventListener('change', updateLinks);
 
+        // Fetch and display version
+        async function fetchVersion() {
+            try {
+                const baseUrl = document.getElementById('env-select').value;
+                const response = await fetch(`${baseUrl}general/data/version.json`);
+                const data = await response.json();
+                const versionInfo = document.getElementById('version-info');
+                if (data.version) {
+                    versionInfo.textContent = `Version: ${data.version}`;
+                }
+            } catch (error) {
+                console.error('Failed to fetch version:', error);
+                const versionInfo = document.getElementById('version-info');
+                versionInfo.textContent = '';
+            }
+        }
+
         // Initialize on page load
         updateLinks();
         addCopyButtons();
+        fetchVersion();
+
+        // Update version when environment changes
+        document.getElementById('env-select').addEventListener('change', fetchVersion);
     </script>
 </body>
 
