@@ -2,28 +2,6 @@
 
 This repository provides static data and assets related to Qubic blockchain. It serves as a single, reliable source of structured data for developers, explorers, wallets, dashboards, and analysis tools.
 
-## Quick Start
-
-### Build Commands
-
-```bash
-# Build everything (recommended)
-python3 scripts/build_dist.py --product all --version v1.2.3
-
-# Build specific product
-python3 scripts/build_dist.py --product general --version v1.2.3
-python3 scripts/build_dist.py --product wallet-app --version v1.2.3
-
-# Build for staging
-python3 scripts/build_dist.py --product all --version v1.2.3-rc.1 --environment staging
-```
-
-### Update Smart Contracts
-
-```bash
-python3 scripts/update_smart_contracts.py
-```
-
 ## Data Categories
 
 ### General Data (Shared)
@@ -205,7 +183,7 @@ Contributions are welcome! Here's how you can help:
 
 ### Adding Data
 
-**DApps for Wallet Explorer** 🎯
+**DApps for Wallet Explorer** 
 - Add your DApp to the curated explorer list in `products/wallet-app/dapps/dapps.json`
 - Include title and description translations in all 7 languages: `products/wallet-app/dapps/locales/*.json` (en, de, es, fr, ru, tr, zh)
 - Provide app URL, icon, and category information
