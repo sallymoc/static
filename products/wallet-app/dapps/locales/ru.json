@@ -16,5 +16,7 @@
     "explorer_name": "Qubic Explorer",
     "explorer_description": "Простой доступ ко всем данным блокчейна.",
     "community_voting_name": "Голосование сообщества",
-    "community_voting_description": "Создавай опросы, голосуй и участвуй в управлении Qubic."
+    "community_voting_description": "Создавай опросы, голосуй и участвуй в управлении Qubic.",
+    "qbay_name": "QubicBay",
+    "qbay_description": "Ваш портал во вселенную NFT"
 }

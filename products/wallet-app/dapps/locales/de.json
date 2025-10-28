@@ -16,5 +16,7 @@
     "explorer_name": "Qubic Explorer",
     "explorer_description": "Einfacher Zugriff auf alle Blockchain-Daten.",
     "community_voting_name": "Community-Abstimmung",
-    "community_voting_description": "Umfragen erstellen, abstimmen und an der Governance von Qubic mitwirken."
+    "community_voting_description": "Umfragen erstellen, abstimmen und an der Governance von Qubic mitwirken.",
+    "qbay_name": "QubicBay",
+    "qbay_description": "Dein Tor zum NFT-Universum"
 }

@@ -53,6 +53,13 @@
             "icon": "",
             "url": "https://qx.qubic.org",
             "descriptionId": "qx_description"
+        },
+        {
+            "id": "qbay_app_id",
+            "nameId": "qbay_name",
+            "icon": "",
+            "url": "https://qubicbay.io/",
+            "descriptionId": "qbay_description"
         }
     ]
 }
