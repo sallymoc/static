@@ -186,7 +186,8 @@ Contributions are welcome! Here's how you can help:
 **DApps for Wallet Explorer** 
 - Add your DApp to the curated explorer list in `products/wallet-app/dapps/dapps.json`
 - Include title and description translations in all 7 languages: `products/wallet-app/dapps/locales/*.json` (en, de, es, fr, ru, tr, zh)
-- Provide app URL, icon, and category information
+- Provide app URL, icon (set "" when not available)
+- An example can be seen here https://github.com/qubic/static/pull/24
 
 **Exchange Addresses**
 - Add new exchange addresses to `data/exchanges.json`
