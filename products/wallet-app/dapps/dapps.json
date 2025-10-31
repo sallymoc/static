@@ -53,6 +53,27 @@
             "icon": "",
             "url": "https://qx.qubic.org",
             "descriptionId": "qx_description"
+        },
+        {
+            "id": "qbay_app_id",
+            "nameId": "qbay_name",
+            "icon": "",
+            "url": "https://qubicbay.io/",
+            "descriptionId": "qbay_description"
+        },
+        {
+            "id": "qbond_app_id",
+            "nameId": "qbond_name",
+            "icon": "",
+            "url": "https://www.qbond.org/",
+            "descriptionId": "qbond_description"
+        },
+        {
+            "id": "rl_app_id",
+            "nameId": "rl_name",
+            "icon": "",
+            "url": "https://qubicrl.org/",
+            "descriptionId": "rl_description"
         }
     ]
 }
