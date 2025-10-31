@@ -16,5 +16,11 @@
     "explorer_name": "Qubic Explorer",
     "explorer_description": "輕鬆存取所有區塊鏈資料。",
     "community_voting_name": "社群投票",
-    "community_voting_description": "建立投票、投票並參與 Qubic 治理。"
+    "community_voting_description": "建立投票、投票並參與 Qubic 治理。",
+    "qbay_name": "QubicBay",
+    "qbay_description": "您通往 NFT 宇宙的門戶",
+    "qbond_name": "QBond",
+    "qbond_description": "賺取收益。保持流動性。隨時交易",
+    "rl_name": "Random Lottery",
+    "rl_description": "Qubic 上的去中心化彩票"
 }
