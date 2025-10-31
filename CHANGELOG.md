@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/qubic/static/compare/v1.1.1...v1.2.0) (2025-10-31)
+
+
+### Features
+
+* add QubicBay, QBond, and Random Lottery dApps ([5886119](https://github.com/qubic/static/commit/58861192ac2187dfe5c9073d0191cef63963b846))
+
+# [1.2.0-rc.1](https://github.com/qubic/static/compare/v1.1.1...v1.2.0-rc.1) (2025-10-31)
+
+
+### Features
+
+* add QubicBay, QBond, and Random Lottery dApps ([5886119](https://github.com/qubic/static/commit/58861192ac2187dfe5c9073d0191cef63963b846))
+
 ## [1.1.1](https://github.com/qubic/static/compare/v1.1.0...v1.1.1) (2025-10-23)
 
 
