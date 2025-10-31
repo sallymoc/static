@@ -16,5 +16,11 @@
     "explorer_name": "Explorador de Qubic",
     "explorer_description": "Accede fácilmente a todos los datos de la blockchain.",
     "community_voting_name": "Votación de la Comunidad",
-    "community_voting_description": "Crea encuestas, vota y participa en la gobernanza de Qubic."
+    "community_voting_description": "Crea encuestas, vota y participa en la gobernanza de Qubic.",
+    "qbay_name": "QubicBay",
+    "qbay_description": "Tu puerta de entrada al universo NFT",
+    "qbond_name": "QBond",
+    "qbond_description": "Gana rendimientos. Mantén liquidez. Opera en cualquier momento",
+    "rl_name": "Random Lottery",
+    "rl_description": "Lotería descentralizada en Qubic"
 }
